@@ -1307,7 +1307,7 @@ logs:
 
     ## the name of an existing PVC to use
     ##
-    existingClaim: "cafebot-pvc2"
+    existingClaim: "cafebot-pvc"
 
     ## sub-path under `logs.persistence.existingClaim` to use
     ##
@@ -1345,7 +1345,7 @@ dags:
 
     ## the name of an existing PVC to use
     ##
-    existingClaim: "cafebot-pvc2"
+    existingClaim: "cafebot-pvc"
 
     ## sub-path under `dags.persistence.existingClaim` to use
     ##
