@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nifi-ingress
+  namespace: cafebot2
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/affinity: cookie
+    ingress.kubernetes.io/secure-backends: "false"
+    ingress.kubernetes.io/ssl-passthrough: "true"
+
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: nifi.maniishere.cloud
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/"
+        backend:
+          service:
+            name: nifi-nifi
+            port:
+              number: 8443
+

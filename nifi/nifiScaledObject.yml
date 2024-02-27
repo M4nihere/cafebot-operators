@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: nifi-scaled
+  namespace: cafebot2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: nifi-nifi
+  pollingInterval: 10
+  cooldownPeriod: 20
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: "http://10.245.12.18:80"
+        query: "max(nifi_amount_items_queued) > 50"
+        threshold: '100'  # Adjust the threshold value based on your requirements
+        activationThreshold: '1'

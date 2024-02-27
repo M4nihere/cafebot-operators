@@ -1,0 +1,22 @@
+  controller:
+    kubernetesGateway:
+      enabled: true
+      gatewayControllerName: haproxy.org/gateway-controller 
+    service:
+      tcpPorts:
+        - name: pgsql
+          protocol: TCP
+          port: 5432
+          targetPort: 5432
+        - name: listen-8080
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+        - name: nifi
+          protocol: TCP
+          port: 8443
+          targetPort: 8443
+        - name: spark-master-svc
+          protocol: TCP
+          port: 8000
+          targetPort: 80

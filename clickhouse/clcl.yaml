@@ -1,0 +1,12 @@
+apiVersion: "clickhouse.altinity.com/v1"
+kind: "ClickHouseInstallation"
+metadata:
+  name: "simple-01"
+  namespace: cafebot2
+spec:
+  configuration:
+    clusters:
+      - name: "simple"
+    users:
+      cafebot:
+        password: cafebot

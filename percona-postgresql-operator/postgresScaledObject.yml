@@ -1,0 +1,101 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: cafebot-postgres-auth  # Replace with your desired name
+  namespace: cafebot2
+spec:
+  secretTargetRef:
+    - parameter: dbname  # Env variable name for database name
+      name: spark  # Secret name changed to "flyingspark"
+      key: dbname  # Key within the Secret
+    - parameter: password  # Env variable name for password
+      name: spark
+      key: password
+    - parameter: user  # Env variable name for username
+      name: spark
+      key: user
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cafebot-instance1-fld5
+  namespace: cafebot2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: cafebot-instance1-fld5
+  pollingInterval: 30
+  cooldownPeriod:  60
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  triggers:
+    - type: postgresql
+      metadata:
+        userName: spark
+        host: cafebot-pgbouncer.cafebot2.svc.cluster.local
+        port: "5432"
+        dbName: spark
+        passwordFromEnv: password
+        sslmode: require
+        query: "SELECT ceil(COUNT(*)::decimal / 16) FROM task_instance WHERE state='running' OR state='queued';"
+        targetQueryValue: "2.2"
+      authenticationRef:
+        name: cafebot-postgres-auth
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cafebot-instance1-kndx
+  namespace: cafebot2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: cafebot-instance1-kndx
+  pollingInterval: 30
+  cooldownPeriod:  60
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  triggers:
+    - type: postgresql
+      metadata:
+        userName: spark
+        host: cafebot-pgbouncer.cafebot2.svc.cluster.local
+        port: "5432"
+        dbName: spark
+        passwordFromEnv: password
+        sslmode: require
+        query: "SELECT ceil(COUNT(*)::decimal / 16) FROM task_instance WHERE state='running' OR state='queued';"
+        targetQueryValue: "2.2"
+      authenticationRef:
+        name: cafebot-postgres-auth
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cafebot-instance1-svt2
+  namespace: cafebot2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: cafebot-instance1-svt2
+  pollingInterval: 30
+  cooldownPeriod:  60
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  triggers:
+    - type: postgresql
+      metadata:
+        userName: spark
+        host: cafebot-pgbouncer.cafebot2.svc.cluster.local
+        port: "5432"
+        dbName: spark
+        passwordFromEnv: password
+        sslmode: require
+        query: "SELECT ceil(COUNT(*)::decimal / 16) FROM task_instance WHERE state='running' OR state='queued';"
+        targetQueryValue: "2.2"
+      authenticationRef:
+        name: cafebot-postgres-auth

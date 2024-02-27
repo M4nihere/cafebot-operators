@@ -1,0 +1,8 @@
+apache-airflow
+pandas
+requests
+json
+scikit-learn
+pyspark
+findspark
+elasticsearch

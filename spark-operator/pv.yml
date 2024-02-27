@@ -1,0 +1,22 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: spark
+provisioner: k8s.io/hostpath  # Use the appropriate provisioner for your environment
+volumeBindingMode: WaitForFirstConsumer  # This line ensures that the volume is only bound when a pod using the PVC is scheduled.
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: spark-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: spark
+  hostPath:
+    path: /opt/spark  # Specify the local path here
+

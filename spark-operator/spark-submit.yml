@@ -1,0 +1,22 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkSubmit
+metadata:
+  name: spark-submit-example
+  namespace: airflow
+spec:
+  mode: cluster
+  image: gcr.io/spark-operator/spark:v3.2.0
+  imagePullPolicy: IfNotPresent
+  mainClass: your.package.MainClass
+  mainApplicationFile: "local:///path/to/your/spark/job.jar"
+  sparkVersion: "3.2.0"
+  driver:
+    cores: 1
+    coreLimit: "100m"
+    memory: "512m"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+  sparkConf:
+    "spark.master": "spark://<master>:7077"

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp
+  namespace: cafebot2
+data:                # Port where the frontend is going to listen to.    # Kubernetes service in the format NS/ServiceName:ServicePort
+  5432:
+    cafebot2/cafebot-ha:5432

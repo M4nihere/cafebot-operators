@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cafebot
+spec:
+  selector:
+    matchLabels:
+      app: cafebot
+  serviceName: "cafebot-service"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cafebot
+    spec:
+      containers:
+      - name: my-frontend
+        image: busybox
+        args:
+        - sleep
+        - infinity
+        volumeMounts:
+        - mountPath: "/opt/cafebot"
+          name: cafebot-data
+  volumeClaimTemplates:
+  - metadata:
+      name: cafebot-data
+    spec:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 50Gi
+      storageClassName: do-block-storage 
+
+ 
+ 
+ 

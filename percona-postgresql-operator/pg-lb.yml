@@ -1,0 +1,17 @@
+# this is manually craeted load balancer
+#
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: cafebot-ha-loadbalancer
+  namespace: cafebot
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    postgres-operator.crunchydata.com/cluster: cafebot
+    postgres-operator.crunchydata.com/role: pgbouncer

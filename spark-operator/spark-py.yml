@@ -1,0 +1,52 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: pyspark-pi
+  namespace: airflow
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "shekharzxcv/spark-py:remote"
+  imagePullPolicy: Always
+  mainApplicationFile: local:///opt/spark/work-dir/main.py
+  sparkVersion: "3.5.0"
+  sparkConf:
+    "spark.eventLog.enabled": "false"
+    "spark.eventLog.dir": "file:/mnt"
+  restartPolicy:
+    type: OnFailure
+    onFailureRetries: 3
+    onFailureRetryInterval: 10
+    onSubmissionFailureRetries: 5
+    onSubmissionFailureRetryInterval: 20
+  volumes:
+    - name: spark-data
+      persistentVolumeClaim:
+        claimName: spark-pvc
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+      #hostNetwork: true
+    labels:
+      version: 3.1.1
+    serviceAccount: spark-spark-operator
+    volumeMounts:
+      - name: spark-data
+        mountPath: /mnt
+  executor:
+    cores: 1
+    instances: 3
+    memory: "512m"
+    volumeMounts:
+      - name: spark-data
+        mountPath: /mnt
+
+  sparkUIOptions:
+    ingressAnnotations:
+      kubernetes.io/ingress.class: nginx
+  dynamicAllocation:
+    enabled: true
+    minExecutors: 1
+    maxExecutors: 10

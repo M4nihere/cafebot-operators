@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: cafebot2
+  annotations:
+    haproxy.org/ingress.class: "haproxy"
+    haproxy.org/backend-config-snippet: |
+      option http-keep-alive
+   # haproxy.org/frontend-config-snippet: |
+    #  acl restricted_acl path_beg -i /admin
+    #  tcp-request content reject if restricted_acl
+data:                # Port where the frontend is going to listen to.    # Kubernetes service in the format NS/ServiceName:ServicePort
+  4040: 
+    cafebot2/pyspark-pi-ui-svc:4040   # ssl option will enable ssl offloading for target service.
+  8443:
+    cafebot2/nifi-nifi:8443
+  8080:
+    cafebot2/airflow-web:8080
+  18080:
+    cafebot2/spark-history-service:18080
+  8000:
+    airflow/spark-master-svc:80
+  7077:
+    airflow/spark-master-svc:7077

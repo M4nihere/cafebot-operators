@@ -1,0 +1,53 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: ScheduledSparkApplication
+metadata:
+  name: spark-pi-scheduled
+  namespace: cafebot2
+spec:
+  schedule: "@every 10m"
+  concurrencyPolicy: Allow
+  successfulRunHistoryLimit: 1
+  failedRunHistoryLimit: 3
+  template:
+    type: Python
+    mode: cluster
+    image: "shekharzxcv/spark-py:latest"
+    #mainClass: org.apache.spark.examples.SparkPi
+    sparkVersion: "3.5.0"
+    mainApplicationFile: local:///opt/spark/work-dir/main.py
+    driver:
+      cores: 1
+      coreLimit: "1200m"
+      memory: "512m"
+      #hostNetwork: true
+      labels:
+        version: 3.1.1
+      serviceAccount: spark-spark-operator
+      volumeMounts:
+        - name: spark-data
+          mountPath: /mnt
+    executor:
+      cores: 1
+      instances: 1
+      memory: "512m"
+      volumeMounts:
+        - name: spark-data
+          mountPath: /mnt
+    restartPolicy:
+      type: OnFailure
+      onFailureRetries: 3
+      onFailureRetryInterval: 10
+      onSubmissionFailureRetries: 5
+      onSubmissionFailureRetryInterval: 20
+    volumes:
+      - name: spark-data
+        persistentVolumeClaim:
+          claimName: spark-pvc
+     
+    sparkUIOptions:
+      ingressAnnotations:
+          kubernetes.io/ingress.class: nginx
+    dynamicAllocation: 
+      enabled: true
+      minExecutors: 3
+      maxExecutors: 10
