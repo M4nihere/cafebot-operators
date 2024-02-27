@@ -794,12 +794,12 @@ web:
     annotations: {}
     sessionAffinity: "None"
     sessionAffinityConfig: {}
-    type: NodePort
+    type: ClusterIP
     externalPort: 8080
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
-    #nodePort:
-    #  http: ""
+    nodePort:
+      http: ""
 
   ## configs for the web Pods' readiness probe
   ##
@@ -1473,7 +1473,7 @@ dags:
 ingress:
   ## if we should deploy Ingress resources
   ##
-  enabled: false
+  enabled: true
 
   ## the `apiVersion` to use for Ingress resources
   ## - for Kubernetes 1.19 and later: "networking.k8s.io/v1"
@@ -1499,11 +1499,11 @@ ingress:
     ##   # webserver URL: http://example.com/airflow
     ##   path: "/airflow"
     ##
-    path: ""
+    path: "/"
 
     ## the hostname for the web Ingress
     ##
-    host: ""
+    host: "nifi.h2o.galaxy.com"
 
     ## the Ingress Class for the web Ingress
     ## - [WARNING] requires Kubernetes 1.18 or later, use "kubernetes.io/ingress.class" annotation for older versions
