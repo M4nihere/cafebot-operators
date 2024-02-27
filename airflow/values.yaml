@@ -798,8 +798,8 @@ web:
     externalPort: 8080
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
-    nodePort:
-      http: ""
+    #nodePort:
+    #  http: ""
 
   ## configs for the web Pods' readiness probe
   ##
