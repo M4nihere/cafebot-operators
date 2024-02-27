@@ -3,14 +3,14 @@ apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
   labels:
-    app: {{ include "apache-nifi.name" . | quote }}
+    app: kubernetes-ingress
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: {{ .Release.Name | quote }}
     heritage: {{ .Release.Service | quote }}
   annotations:
-    kubernetes.io/description: {{ template "apache-nifi.fullname" . }}-scc provides all features of the restricted SCC but
+    kubernetes.io/description: haproxy-scc provides all features of the restricted SCC but
       allows users to run with any UID and any GID.
-  name: {{ template "apache-nifi.fullname" . }}-scc
+  name: haproxy-scc
 allowHostDirVolumePlugin: false
 allowHostIPC: false
 allowHostNetwork: false
@@ -34,7 +34,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-- system:serviceaccount:{{ .Release.Namespace }}:{{ include "apache-nifi.serviceAccountName" . }}
+- system:serviceaccount:{{ .Release.Namespace }}:{{ include "values.serviceAccount.name" . }}
 volumes:
 - configMap
 - downwardAPI
