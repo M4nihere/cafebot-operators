@@ -42,7 +42,7 @@ namespace:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 serviceAccount:
   create: true
-  name:
+  name: haproxy
 
 ## Namespace override
 ## Allow the release namespace to be overridden for multi-namespace deployments in combined charts
@@ -54,7 +54,11 @@ serviceAccount:
 aws:
   ## Name of the Secret deployed in the desired namespace containing the AWS license files
   licenseConfigSecretName: ""
-
+openshift:
+  scc:
+    enabled: true
+  route:
+    enabled: false
 ## Controller default values
 controller:
   name: controller
