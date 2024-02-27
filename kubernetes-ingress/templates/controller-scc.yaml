@@ -33,7 +33,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-- system:serviceaccount:{{ .Release.Namespace }}:{{ include "values.serviceAccount.name" . }}
+- system:serviceaccount:{{ .Release.Namespace }}:haproxy
 volumes:
 - configMap
 - downwardAPI
