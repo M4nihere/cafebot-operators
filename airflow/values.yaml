@@ -794,12 +794,12 @@ web:
     annotations: {}
     sessionAffinity: "None"
     sessionAffinityConfig: {}
-    type: LoadBalancer
+    type: nodePort
     externalPort: 8080
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
     nodePort:
-      http: ""
+      http: "31420"
 
   ## configs for the web Pods' readiness probe
   ##
