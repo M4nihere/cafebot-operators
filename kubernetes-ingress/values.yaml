@@ -54,11 +54,6 @@ serviceAccount:
 aws:
   ## Name of the Secret deployed in the desired namespace containing the AWS license files
   licenseConfigSecretName: ""
-openshift:
-  scc:
-    enabled: true
-  route:
-    enabled: false
 ## Controller default values
 controller:
   name: controller
