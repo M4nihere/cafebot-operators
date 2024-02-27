@@ -1981,7 +1981,7 @@ postgresql:
 ###################################
 ## DATABASE | External Database
 ###################################
-externalDatabase: []
+#externalDatabase: []
   ## the type of external database
   ## - allowed values: "mysql", "postgres"
   ##
