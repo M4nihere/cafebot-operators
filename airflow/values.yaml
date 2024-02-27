@@ -61,8 +61,7 @@ airflow:
   ##     # ether environment variables
   ##     HTTP_PROXY: "http://proxy.example.com:8080"
   ##
-  config: 
-    AIRFLOW__WEBSERVER__BASE_URL: "http://{HOSTNAME}/home"
+  config: {}
 
   ## a list of users to create
   ## - templates can ONLY be used in: `password`, `email`, `firstName`, `lastName`
@@ -1474,7 +1473,7 @@ dags:
 ingress:
   ## if we should deploy Ingress resources
   ##
-  enabled: true
+  enabled: false
 
   ## the `apiVersion` to use for Ingress resources
   ## - for Kubernetes 1.19 and later: "networking.k8s.io/v1"
@@ -1500,7 +1499,7 @@ ingress:
     ##   # webserver URL: http://example.com/airflow
     ##   path: "/airflow"
     ##
-
+    
     path: "/home"
 
     ## the hostname for the web Ingress
