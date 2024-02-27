@@ -61,7 +61,8 @@ airflow:
   ##     # ether environment variables
   ##     HTTP_PROXY: "http://proxy.example.com:8080"
   ##
-  config: {}
+  config: 
+    AIRFLOW__BASE_URL: "http://{HOSTNAME}/home"
 
   ## a list of users to create
   ## - templates can ONLY be used in: `password`, `email`, `firstName`, `lastName`
@@ -1499,6 +1500,7 @@ ingress:
     ##   # webserver URL: http://example.com/airflow
     ##   path: "/airflow"
     ##
+
     path: "/home"
 
     ## the hostname for the web Ingress
