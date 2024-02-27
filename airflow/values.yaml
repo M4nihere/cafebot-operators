@@ -62,7 +62,7 @@ airflow:
   ##     HTTP_PROXY: "http://proxy.example.com:8080"
   ##
   config: 
-    AIRFLOW__webserver__BASE_URL: "http://{HOSTNAME}/home"
+    AIRFLOW__WEBSERVER__BASE_URL: "http://{HOSTNAME}/home"
 
   ## a list of users to create
   ## - templates can ONLY be used in: `password`, `email`, `firstName`, `lastName`
