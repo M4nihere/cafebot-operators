@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: airflow
+spec:
+  host: nifi.h20.galaxy.com
+  to:
+    kind: Service
+    name: airflow-web
+  port:
+    targetPort: 8080  # Specify the port your service is listening on
+  tls:
+    termination: edge  # Termination type (edge, passthrough, reencrypt)
+  wildcardPolicy: None  # Policy for wildcard routes (None, Subdomain)
