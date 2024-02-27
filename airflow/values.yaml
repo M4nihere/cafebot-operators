@@ -794,7 +794,7 @@ web:
     annotations: {}
     sessionAffinity: "None"
     sessionAffinityConfig: {}
-    type: nodePort
+    type: NodePort
     externalPort: 8080
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
