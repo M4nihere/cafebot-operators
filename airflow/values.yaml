@@ -1303,7 +1303,7 @@ logs:
   persistence:
     ## if a persistent volume is mounted at `logs.path`
     ##
-    enabled: true
+    enabled: false
 
     ## the name of an existing PVC to use
     ##
