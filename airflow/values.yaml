@@ -241,19 +241,19 @@ airflow:
   ## - spec for VolumeMount:
   ##   https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volumemount-v1-core
   ##
-  extraVolumeMounts:
-  - name: cafebot-pvc
-    mountPath: /opt/airflow
-    subPath: data/airflow
+  extraVolumeMounts: []
+  # name: cafebot-pvc
+  #  mountPath: /opt/airflow
+  #  subPath: data/airflow
 
   ## extra Volumes for the airflow Pods
   ## - spec for Volume:
   ##   https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core
   ##
-  extraVolumes: 
-  - name: cafebot-pvc
-    persistentVolumeClaim:
-      claimName: cafebot-pvc
+  extraVolumes: []
+  #- name: cafebot-pvc
+  #  persistentVolumeClaim:
+  #    claimName: cafebot-pvc
 
   ## kubernetes cluster domain name
   ## - configured in the kubelet with `--cluster-domain` flag (deprecated):
@@ -1341,7 +1341,7 @@ dags:
   persistence:
     ## if a persistent volume is mounted at `dags.path`
     ##
-    enabled: true
+    enabled: false
 
     ## the name of an existing PVC to use
     ##
@@ -1937,7 +1937,7 @@ postgresql:
     ## if postgres will use Persistent Volume Claims to store data
     ## - [WARNING] if false, data will be LOST as postgres Pods restart
     ##
-    enabled: true
+    enabled: false
 
     ## the name of the StorageClass used by the PVC
     ##
