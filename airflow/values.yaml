@@ -794,7 +794,7 @@ web:
     annotations: {}
     sessionAffinity: "None"
     sessionAffinityConfig: {}
-    type: ClusterIP
+    type: LoadBalancer
     externalPort: 8080
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
