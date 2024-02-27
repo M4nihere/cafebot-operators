@@ -1303,7 +1303,7 @@ logs:
   persistence:
     ## if a persistent volume is mounted at `logs.path`
     ##
-    enabled: false
+    enabled: true
 
     ## the name of an existing PVC to use
     ##
@@ -1981,51 +1981,51 @@ postgresql:
 ###################################
 ## DATABASE | External Database
 ###################################
-#externalDatabase: []
+externalDatabase: []
   ## the type of external database
   ## - allowed values: "mysql", "postgres"
   ##
-  #type: postgres
+  type: postgres
 
   ## the host of the external database
   ##
-  #host: cafebot-ha.cafebot2.svc.cluster.local
+  host: localhost
 
   ## the port of the external database
   ##
-  #port: 5432
+  port: 5432
 
   ## the database/scheme to use within the external database
   ##
-  #database: spark
+  database: airflow
 
   ## the username for the external database
   ##
-  #user: spark
+  user: airflow
 
   ## the name of a pre-created secret containing the external database user
   ## - if set, this overrides `externalDatabase.user`
   ##
-  #userSecret: ""
+  userSecret: ""
 
   ## the key within `externalDatabase.userSecret` containing the user string
   ##
-  #userSecretKey: ""
+  userSecretKey: "postgresql-user"
 
   ## the password for the external database
   ## - [WARNING] to avoid storing the password in plain-text within your values,
   ##   create a Kubernetes secret and use `externalDatabase.passwordSecret`
   ##
-  #password: "u0OMTD4CQ?Dv>K>lxs@p?f8c"
+  password: ""
 
   ## the name of a pre-created secret containing the external database password
   ## - if set, this overrides `externalDatabase.password`
   ##
-  #passwordSecret: ""
+  passwordSecret: ""
 
   ## the key within `externalDatabase.passwordSecret` containing the password string
   ##
-  #passwordSecretKey: ""
+  passwordSecretKey: "postgresql-password"
 
   ## extra connection-string properties for the external database
   ##
@@ -2033,7 +2033,7 @@ postgresql:
   ##   # require SSL (only for Postgres)
   ##   properties: "?sslmode=require"
   ##
-  #properties: "?sslmode=disable"
+  properties: ""
 
 ###################################
 ## DATABASE | Embedded Redis
