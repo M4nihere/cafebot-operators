@@ -1499,7 +1499,7 @@ ingress:
     ##   # webserver URL: http://example.com/airflow
     ##   path: "/airflow"
     ##
-    path: "/"
+    path: "/home"
 
     ## the hostname for the web Ingress
     ##
