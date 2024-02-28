@@ -455,8 +455,8 @@ spec:
             port: {{ .Values.properties.httpsPort }}
         volumeMounts:
           - name: cafebot-pvc
-            mountPath: /opt/nifi
-            subPath: data/nifi
+            mountPath: /opt/cafebot
+            #subPath: data/nifi
           - mountPath: /opt/nifi/nifi-current/logs
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
             name: {{ .Values.persistence.subPath.name }}
