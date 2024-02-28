@@ -257,7 +257,7 @@ sidecar:
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: true
+  enabled: false
   existingClaim: cafebot-pvc2
   storageClass: do-block-storage
   accessModes:
