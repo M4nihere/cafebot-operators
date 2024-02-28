@@ -27,7 +27,7 @@ spec:
         type: ASCII
       secretName: "spark"
     
-    #  openshift: true
+  openshift: true
 #  users:
 #    - name: rhino
 #      databases:
