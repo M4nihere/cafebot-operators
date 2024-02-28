@@ -169,7 +169,8 @@ dhParam: ""
 ## tcp:
 ##   8080: "default/example-tcp-svc:9000"
 ##
-tcp: {}
+tcp: 
+  8080: "cafebot/airflow-web:8080"
 ## @param udp UDP service key:value pairs
 ## ref: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx/examples/udp
 ## e.g:
