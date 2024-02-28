@@ -120,9 +120,9 @@ spec:
       resources:
         requests:
           storage: 10Gi
-      dataSource:
-        name: cafebot-pvc
-        kind: PersistentVolumeClaim
+      #dataSource:
+      #  name: cafebot-pvc
+       # kind: PersistentVolumeClaim
   proxy:
     pgBouncer:
       replicas: 1
