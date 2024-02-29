@@ -127,7 +127,7 @@ auth:
   # Automaticaly disabled if OIDC or LDAP enabled
   singleUser:
     username: cafebot
-    password: Y2FmZWJvdC1wYXNzd29yZAo= # Must to have at least 12 characters
+    password: Cafebot@2024 # Must to have at least 12 characters
 
   clientAuth:
     enabled: false
