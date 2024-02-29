@@ -258,6 +258,8 @@ sidecar:
 ##
 persistence:
   enabled: true
+  subPath:
+    enabled: true
   # When creating persistent storage, the NiFi helm chart can either reference an already-defined
   # storage class by name, such as "standard" or can define a custom storage class by specifying
   # customStorageClass: true and providing the "storageClass", "storageProvisioner" and "storageType".
