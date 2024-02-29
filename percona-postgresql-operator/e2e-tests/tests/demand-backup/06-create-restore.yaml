@@ -1,7 +1,0 @@
-apiVersion: pgv2.percona.com/v2
-kind: PerconaPGRestore
-metadata:
-  name: demand-backup-restore
-spec:
-  pgCluster: demand-backup
-  repoName: repo1

@@ -1,1 +1,0 @@
-oc patch serviceaccount cafebot -n <namespace> --type=merge --patch='{"metadata":{"annotations":{"openshift.io/sa.scc.supplemental-groups":"allow-external-lb"}}}'
