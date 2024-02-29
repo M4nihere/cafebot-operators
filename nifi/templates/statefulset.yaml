@@ -457,9 +457,9 @@ spec:
           - name: cafebot-pvc
             mountPath: /opt/cafebot
 
-          - name: cafebot-pvc
-            mountPath: /opt/nifi/nifi-current/conf
-            subPath: nifi/nifi-data/conf
+          #- name: cafebot-pvc
+          #  mountPath: /opt/nifi/nifi-current/conf
+          #  subPath: nifi/nifi-data/conf
             #subPath: data/nifi
           - mountPath: /opt/nifi/nifi-current/logs
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
