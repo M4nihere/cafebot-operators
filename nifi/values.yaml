@@ -259,7 +259,7 @@ sidecar:
 persistence:
   enabled: true
   existingClaim: cafebot-pv
-  storageClass: default
+  storageClass: standard
   accessModes:
     - ReadWriteMany
   subPath:
