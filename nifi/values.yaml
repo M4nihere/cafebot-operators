@@ -258,9 +258,28 @@ sidecar:
 ##
 persistence:
   enabled: true
-  accessModes: ReadWriteMany
+  storageClass: standard
+  accessModes:
+    - ReadWriteMany
   subPath:
     enabled: true
+    name: data
+    size: 5Gi
+  logStorage:
+    size: 2Gi
+  configStorage:
+    size: 5Gi
+  dataStorage:
+    size: 5Gi
+  flowfileRepoStorage:
+    size: 5Gi
+  contentRepoStorage:
+    size: 5Gi
+  provenanceRepoStorage:
+    size: 5Gi
+  authconfStorage:
+    size: 500Mi
+
   # When creating persistent storage, the NiFi helm chart can either reference an already-defined
   # storage class by name, such as "standard" or can define a custom storage class by specifying
   # customStorageClass: true and providing the "storageClass", "storageProvisioner" and "storageType".
@@ -350,7 +369,6 @@ tolerations: []
 #  - name: mycustomlibs
 #    hostPath:
 #     path: ".jars"
-
 
 
 ## Extra containers
