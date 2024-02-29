@@ -263,7 +263,7 @@ persistence:
     - ReadWriteMany
   subPath:
     enabled: true
-    name: data
+    name: cafebot-pv
     size: 5Gi
   logStorage:
     size: 2Gi

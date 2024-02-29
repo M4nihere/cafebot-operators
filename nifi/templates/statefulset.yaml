@@ -850,8 +850,6 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.subPath.size }}
-        existingClaim: true
-        claimName: cafebot-pv
 {{- end }}
 {{- if and .Values.persistence.enabled (not .Values.persistence.subPath.enabled) }}
   volumeClaimTemplates:
