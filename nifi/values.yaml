@@ -258,6 +258,7 @@ sidecar:
 ##
 persistence:
   enabled: true
+  accessModes: ReadWriteMany
   subPath:
     enabled: true
   # When creating persistent storage, the NiFi helm chart can either reference an already-defined
