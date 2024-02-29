@@ -456,49 +456,49 @@ spec:
         volumeMounts:
           - mountPath: /opt/nifi/nifi-current/logs
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-
             subPath: logs
             {{- else }}
             name: "logs"
             {{- end }}
           - mountPath: /opt/nifi/data
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: data
             {{- else }}
             name: "data"
             {{- end }}
           - mountPath: /opt/nifi/nifi-current/auth-conf/
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: auth-conf
             {{- else }}
             name: "auth-conf"
             {{- end }}
           - mountPath: /opt/nifi/nifi-current/config-data
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: config-data
             {{- else }}
             name: "config-data"
             {{- end }}
           - mountPath: /opt/nifi/flowfile_repository
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: flowfile-repository
             {{- else }}
             name: "flowfile-repository"
             {{- end }}
           - mountPath: /opt/nifi/content_repository
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: content-repository
             {{- else }}
             name: "content-repository"
             {{- end }}
           - mountPath: /opt/nifi/provenance_repository
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
+            name: cafebot-pvc
             subPath: provenance-repository
             {{- else }}
             name: "provenance-repository"
@@ -579,7 +579,7 @@ spec:
         volumeMounts:
         - mountPath: /var/log
           {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-          name: {{ .Values.persistence.subPath.name }}
+          name: cafebot-pvc
           subPath: logs
           {{- else }}
           name: "logs"
@@ -596,7 +596,7 @@ spec:
         volumeMounts:
         - mountPath: /var/log
           {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-          name: {{ .Values.persistence.subPath.name }}
+          name: cafebot-pvc
           subPath: logs
           {{- else }}
           name: "logs"
@@ -613,7 +613,7 @@ spec:
         volumeMounts:
         - mountPath: /var/log
           {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-          name: {{ .Values.persistence.subPath.name }}
+          name: cafebot-pvc
           subPath: logs
           {{- else }}
           name: "logs"
@@ -840,16 +840,15 @@ spec:
 {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
   volumeClaimTemplates:
     - metadata:
-        name: {{ .Values.persistence.subPath.name }}
+        name: cafebot-pvc
       spec:
-        accessModes:
-        {{- range .Values.persistence.accessModes }}
-          - {{ . | quote }}
-        {{- end }}
+        accessModes: ReadWriteMany
         storageClassName: {{ .Values.persistence.storageClass | quote }}
         resources:
           requests:
-            storage: {{ .Values.persistence.subPath.size }}
+            storage: 1Gi
+        existingClaim: true 
+        claimName: cafebot-pv
 {{- end }}
 {{- if and .Values.persistence.enabled (not .Values.persistence.subPath.enabled) }}
   volumeClaimTemplates:
