@@ -257,16 +257,15 @@ sidecar:
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: false
-  existingClaim: cafebot-pvc2
-  storageClass: do-block-storage
+  enabled: true
+  existingClaim: cafebot-pv
+  storageClass: default
   accessModes:
     - ReadWriteMany
-  mountPath: /opt/nifi
   subPath:
     enabled: true
     name: data
-    size: 10Gi
+    size: 5Gi
   logStorage:
     size: 2Gi
   configStorage:
@@ -372,10 +371,7 @@ tolerations: []
 #    hostPath:
 #     path: ".jars"
 
-extraVolumes:
-- name: cafebot-pvc
-  persistentVolumeClaim:
-    claimName: cafebot-pvc
+
 
 ## Extra containers
 extraContainers: []
