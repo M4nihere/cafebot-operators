@@ -260,7 +260,7 @@ persistence:
   enabled: true
   storageClass: standard
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   subPath:
     enabled: true
     name: cafebot-pv
