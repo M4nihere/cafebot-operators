@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nifi-pvc
+spec:
+  accessModes:
+    - ReadWritemany
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 15Gi
