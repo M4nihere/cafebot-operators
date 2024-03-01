@@ -461,13 +461,13 @@ spec:
             {{- else }}
             name: "logs"
             {{- end }}
-          - mountPath: /opt/nifi/data
-            {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
-            name: {{ .Values.persistence.subPath.name }}
-            subPath: data
-            {{- else }}
-            name: "data"
-            {{- end }}
+          #- mountPath: /opt/nifi/data
+          #  {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
+          #  name: {{ .Values.persistence.subPath.name }}
+          #  subPath: data
+          #  {{- else }}
+          #  name: "data"
+          #  {{- end }}
           - mountPath: /opt/nifi/nifi-current/auth-conf/
             {{- if and .Values.persistence.enabled .Values.persistence.subPath.enabled }}
             name: {{ .Values.persistence.subPath.name }}
@@ -850,7 +850,6 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.subPath.size }}
-        volumeName: nifi-pvc
 {{- end }}
 
 {{- if and .Values.persistence.enabled (not .Values.persistence.subPath.enabled) }}
