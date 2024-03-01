@@ -20,10 +20,10 @@ spec:
         volumeMounts:
         - name: persistent-storage
           mountPath: /opt/cafebot
-  volumes:
-  - name: persistent-storage
-    # Replace with your chosen persistent volume type and configuration
-    # For example, hostPath for a single-node cluster:
-    persistenceVolumeClaim:
-      claimName: cafebot-pvc
-    # Replace with other storage types like NFS, iSCSI (consult Kubernetes documentation)
+      volumes:
+      - name: persistent-storage
+        # Replace with your chosen persistent volume type and configuration
+        # For example, hostPath for a single-node cluster:
+        persistentVolumeClaim:
+          claimName: cafebot-pvc
+        # Replace with other storage types like NFS, iSCSI (consult Kubernetes documentation)
