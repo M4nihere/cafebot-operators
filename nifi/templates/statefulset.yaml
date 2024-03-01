@@ -850,7 +850,9 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.subPath.size }}
+        volumeName: cafebot-data
 {{- end }}
+
 {{- if and .Values.persistence.enabled (not .Values.persistence.subPath.enabled) }}
   volumeClaimTemplates:
     - metadata:
