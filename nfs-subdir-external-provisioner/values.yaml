@@ -9,7 +9,7 @@ imagePullSecrets: []
 
 nfs:
   server: 192.168.50.10
-  path: /usr/local/storage
+  path: /cafebot
   mountOptions:
   volumeName: cafebot
   # Reclaim policy for the main nfs volume
