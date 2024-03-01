@@ -850,6 +850,7 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.subPath.size }}
+        e
 {{- end }}
 {{- if and .Values.persistence.enabled (not .Values.persistence.subPath.enabled) }}
   volumeClaimTemplates:
