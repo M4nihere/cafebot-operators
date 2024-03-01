@@ -258,13 +258,13 @@ sidecar:
 ##
 persistence:
   enabled: true
-  #storageClass: thin-csi
+  storageClass: nfs-client
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   subPath:
     enabled: true
     name: cafebot-pv
-    size: 5Gi
+    size: 15Gi
   logStorage:
     size: 2Gi
   configStorage:
