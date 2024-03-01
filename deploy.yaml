@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-deployment
+  namespace: cafebot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - name: ubuntu-container
+        image: ubuntu:latest
+        command: ["sleep", "3600000"]  # Example command to keep the container running
+        volumeMounts:
+        - name: data-volume
+          mountPath: /opt/cafebot  # Mount path in the container
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: cafebot-pv-nifi-0  # Name of the existing PVC
