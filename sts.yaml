@@ -1,29 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: cafebot
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: my-statefulset
+  name: mysql-statefulset
   namespace: cafebot
 spec:
-  replicas: 1  # Number of desired replicas
+  serviceName: mysql-service
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: mysql
   template:
     metadata:
       labels:
-        app: my-app
+        app: mysql
     spec:
       containers:
-      - name: my-container
-        image: ubuntu:latest  # Replace with your desired image
-        command: ["/bin/bash", "-c", "sleep infinity"]  # Runs indefinitely
+      - name: mysql
+        image: mysql:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: your_root_password
+        - name: MYSQL_DATABASE
+          value: your_database_name
+        - name: MYSQL_USER
+          value: your_mysql_user
+        - name: MYSQL_PASSWORD
+          value: your_mysql_password
+        ports:
+        - containerPort: 3306
         volumeMounts:
-        - name: persistent-storage
-          mountPath: /opt/cafebot
-      volumes:
-      - name: persistent-storage
-        # Replace with your chosen persistent volume type and configuration
-        # For example, hostPath for a single-node cluster:
-        persistentVolumeClaim:
-          claimName: cafebot-pvc
-        # Replace with other storage types like NFS, iSCSI (consult Kubernetes documentation)
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql 
+  volumes:
+  - name: mysql-persistent-storage
+    persistentVolumeClaim:
+      claimName: cafebot-pvc
