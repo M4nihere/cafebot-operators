@@ -258,9 +258,9 @@ sidecar:
 ##
 persistence:
   enabled: true
-  storageClass: standard
+  storageClass: thin-csi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   subPath:
     enabled: true
     name: cafebot-pv
