@@ -257,7 +257,7 @@ sidecar:
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: true
+  enabled: false
   storageClass: nfs-client
   accessModes:
     - ReadWriteMany
@@ -365,10 +365,14 @@ tolerations: []
 #extraVolumeMounts:
 #  - name: mycustomlibs
 #    mountPath: /opt/configuration_resources/custom_lib
-#extraVolumes: # this will create the volume from the directory
-#  - name: mycustomlibs
-#    hostPath:
-#     path: ".jars"
+extraVolumeMounts:
+  - name: cafebot-pvc
+    mountPath: /opt/nifi/data
+    subPath: nifi_new/data
+extraVolumes:
+- name: cafebot-pvc
+  persistentVolumeClaim:
+    claimName: cafebot-pvc
 
 
 ## Extra containers
