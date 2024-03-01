@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-statefulset
+  namespace: cafebot
+spec:
+  replicas: 1  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: ubuntu:latest  # Replace with your desired image
+        command: ["/bin/bash", "-c", "sleep infinity"]  # Runs indefinitely
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /opt/cafebot
+  volumes:
+  - name: persistent-storage
+    # Replace with your chosen persistent volume type and configuration
+    # For example, hostPath for a single-node cluster:
+    persistenceVolumeClaim:
+      claimName: cafebot-pvc
+    # Replace with other storage types like NFS, iSCSI (consult Kubernetes documentation)
