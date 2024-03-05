@@ -365,14 +365,14 @@ tolerations: []
 #extraVolumeMounts:
 #  - name: mycustomlibs
 #    mountPath: /opt/configuration_resources/custom_lib
-extraVolumeMounts:
-  - name: cafebot-pvc
-    mountPath: /opt/nifi/data
-    subPath: nifi_new/data
-extraVolumes:
-- name: cafebot-pvc
-  persistentVolumeClaim:
-    claimName: cafebot-pvc
+#extraVolumeMounts:
+##  - name: cafebot-pvc
+#    mountPath: /opt/nifi/data
+#    subPath: nifi_new/data
+#extraVolumes:
+#- name: cafebot-pvc
+#  persistentVolumeClaim:
+#    claimName: cafebot-pvc
 
 
 ## Extra containers
