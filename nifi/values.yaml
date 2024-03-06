@@ -257,13 +257,13 @@ sidecar:
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  enabled: false
+  enabled: true
   storageClass: nfs-client
   accessModes:
     - ReadWriteMany
   subPath:
     enabled: true
-    name: cafebot-pv
+    name: data
     size: 15Gi
   logStorage:
     size: 2Gi
@@ -367,8 +367,11 @@ tolerations: []
 #    mountPath: /opt/configuration_resources/custom_lib
 extraVolumeMounts:
   - name: cafebot-pvc
-    mountPath: /opt/nifi/data
-    subPath: nifi_new/data
+    mountPath: /opt/cafebot/in
+    subPath: nifi/in
+  - name: cafebot-pvc
+    mountPath: /opt/cafebot/out
+    subPath: nifi/out
 extraVolumes:
 - name: cafebot-pvc
   persistentVolumeClaim:
