@@ -258,7 +258,7 @@ sidecar:
 ##
 persistence:
   enabled: true
-  storageClass: nfs-client
+  storageClass: thin-csi
   accessModes:
     - ReadWriteMany
   subPath:
