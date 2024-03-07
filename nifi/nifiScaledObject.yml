@@ -2,7 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: nifi-scaled
-  namespace: cafebot2
+  namespace: cafebot
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
