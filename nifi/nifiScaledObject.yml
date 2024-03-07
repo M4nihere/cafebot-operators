@@ -12,10 +12,10 @@ spec:
   cooldownPeriod: 20
   minReplicaCount: 4
   maxReplicaCount: 10
-  #triggers:
-  #  - type: prometheus
-  #    metadata:
-  #      serverAddress: "http://10.245.12.18:80"
-  #      query: "max(nifi_amount_items_queued) > 50"
-  #      threshold: '100'  # Adjust the threshold value based on your requirements
-  #      activationThreshold: '1'
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: "http://172.30.245.139:80"
+        query: "max(nifi_amount_items_queued) > 50"
+        threshold: '100'  # Adjust the threshold value based on your requirements
+        activationThreshold: '1'
