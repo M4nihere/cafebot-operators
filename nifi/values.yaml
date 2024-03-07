@@ -492,6 +492,6 @@ metrics:
     serviceMonitor:
       # Enable deployment of Prometheus Operator ServiceMonitor resource
       enabled: false
-      namespace: cafebot2
+      namespace: cafebot
       # Additional labels for the ServiceMonitor
       labels: {}

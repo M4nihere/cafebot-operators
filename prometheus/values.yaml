@@ -753,11 +753,7 @@ serverFiles:
       - job_name: nifi-metrics
         static_configs:
           - targets:
-            - nifi-nifi-metrics.cafebot2.svc.cluster.local:9092
-      - job_name: nifi-metrics
-        static_configs:
-          - targets:
-            - 10.245.221.37:9092
+            - nifi-metrics.cafebot.svc.cluster.local:9092
       # A scrape configuration for running Prometheus on a Kubernetes cluster.
       # This uses separate scrape configs for cluster components (i.e. API server, node)
       # and services to allow each to use different authentication configs.
